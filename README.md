@@ -15,3 +15,4 @@ Quedaría añadir un footer que se añadirá hoy. Hay que solucionar los siguien
   
 Ahora nos piden a mayores comentarios en las tarjetas, favoritos y avatar como coleciones y jugar con ellas en el Frontend
 Implementación Heroku
+# social-App
