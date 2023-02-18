@@ -104,6 +104,7 @@ export default function MenuAppBar() {
   }
 
   return (
+    
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "lightblue" }}>
         <Toolbar disableGutters>
@@ -173,7 +174,7 @@ export default function MenuAppBar() {
           )}
         </Toolbar>
       </AppBar>
-
+    
       <Box
         component="form"
         noValidate
