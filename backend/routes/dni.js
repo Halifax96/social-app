@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/users");
 
 //Función que apartir de un dni recibido por parametros te devuelve el id del objeto
-router.get("/api/:dni", async function(req, res){
+router.get("/:dni", async function(req, res){
     let dni = req.params.dni;
 
     try{
@@ -21,7 +21,7 @@ router.get("/api/:dni", async function(req, res){
 });
 
 //El siguiente metodo verifica si esta dentro de la base de datos
-router.post("/api/", async function(req, res){
+router.post("/", async function(req, res){
     let dni = req.body.dni;
 
     try{

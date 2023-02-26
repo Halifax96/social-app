@@ -1,4 +1,4 @@
 {
-    "mongoUrl": "mongodb+srv://carlos:introapp@introapp.ekkgobo.mongodb.net/?retryWrites=true&w=majority",
+    "mongoUrl": "mongodb+srv://cpriev00:socialcards@socialcards.zyxncns.mongodb.net/?retryWrites=true&w=majority",
     "port": "5000"
 }

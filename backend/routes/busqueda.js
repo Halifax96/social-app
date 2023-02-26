@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/users");
 
 //Función que apartir de un dni recibido por parametros te devuelve el id del objeto
-router.get("/api/:dni", async function(req, res){
+router.get("/:dni", async function(req, res){
     let dni = req.params.dni;
 
     try{

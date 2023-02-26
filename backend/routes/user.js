@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/users");
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 
 //Función que devuelve todos los usuarios
-router.get("/api/", async function(req, res){
+router.get("/", async function(req, res){
     try{
         const useresp = await User.find();
         res.json(useresp);
@@ -15,7 +15,7 @@ router.get("/api/", async function(req, res){
 });
 
 //Añade una card desde el body
-router.post("/api/", async function(req, res) {  
+router.post("/", async function(req, res) {  
     let nombre = req.body.nombre;
     let apellido = req.body.apellido;
     let direccion = req.body.direccion;
@@ -44,14 +44,14 @@ router.post("/api/", async function(req, res) {
         usuario.comentario = comentario;
         usuario.avatar = avatar;
         usuario.favoritos = favoritos;
-
         const user = new User(usuario);
         await user.save();
 
         //Creamos el token y enviamos a qn fue ananido a la base de datos
-        const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });
+        //const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });
         //Enviamos el token
-        return res.status(200).json({ token });
+        
+        return res.status(200).send("Usuario Añadido correctamente");/*.json({ token })*/
     }catch(e){
         console.log("Error al añadir un usuario", e);
         return  res.status(400).send("Error al añadir un usuario");
@@ -59,7 +59,7 @@ router.post("/api/", async function(req, res) {
 });
 
 //Añade una card desde el body
-router.put("/api/", async function(req, res){    
+router.put("/", async function(req, res){    
     let idUser = req.body.id;
     let nombre = req.body.nombre;
     let apellido = req.body.apellido;
@@ -75,6 +75,7 @@ router.put("/api/", async function(req, res){
     
     try{
         //mirar por si acaso el id de mongo
+        console.log(idUser);
         let currentCard = await User.findById(idUser);
         if(!currentCard){
             return res.status(400).send("Usuario no encontrado ");
@@ -83,9 +84,10 @@ router.put("/api/", async function(req, res){
         let nuevaCard = await User.findOneAndUpdate({id:idUser}, {nombre:nombre, apellido:apellido, direccion:direccion, dni:dni, lugarNacimiento:lugarNacimiento, descripcionPersonal:descripcionPersonal, telefono:telefono, fechaCreacion:fechaCreacion, comentario:comentario, favoritos:favoritos, avatar:avatar});
 
         //Creamos el token y enviamos a qn fue ananido a la base de datos
-        const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });
+        //const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });
         //Enviamos el token
-        return res.status(200).json({ token });
+
+        return res.status(200).send("Usuario cambaiado perfectamente");/*.json({ token })*/
         
     }catch(e){
         console.log("Error al modificar el usuario",e);
@@ -94,23 +96,24 @@ router.put("/api/", async function(req, res){
 });
 
 //Elimina una card desde el body
-router.delete("/api/:id", async function(req, res) {     
+router.delete("/:id", async function(req, res) {     
 
     let idUser = req.params.id;
 
     try{
         let usuario = await User.findOne({_id:idUser});
         let dni = usuario.dni;
-        console.log("DNI "+dni); //Obtine bien el dni
+        
         let borrados = await User.deleteOne({_id:idUser});
         if(borrados.deletedCount === 0){
             return res.status(400).send("Usuario no existe por lo tanto no se puede eliminar");
         }
 
         //Creamos el token y enviamos a qn fue ananido a la base de datos
-        const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });
+        //const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });
         //Enviamos el token
-        return res.status(200).send({ token });
+
+        return res.status(200).send("Usuario eliminado perfectamente");/*.send({ token })*/
     }catch(e){
         console.log("Error al borrar el usuario en la base de datos", e);
         return res.status(400).send("Error al eliminar usuario");

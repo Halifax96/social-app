@@ -3,26 +3,20 @@ const cors = require("cors");
 const {stderr} = require("process");
 const dataBase = require("./config/db");
 
+const token = require("./middleware/jwt");
+
 var app = express();
 app.use(express.json());
 app.use(cors());
+
 dataBase();
 
-//Las 4 coleciones
-app.use("/api/user", require("./routes/user"));
+app.use("/busqueda", require("./routes/busqueda"));
+app.use("/user", require("./routes/user"));
+app.use("/dni", require("./routes/dni"));
 
-app.use("/api/dni", require("./routes/dni"));
-app.use("/api/busqueda", require("./routes/busqueda"));
+app.use("/google", require("./routes/google"));
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static("../frontend/build"));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-    });
-}
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, function (req, res){
+app.listen(5000, function (req, res){
     console.log("Escuchando en 5000");
 });
