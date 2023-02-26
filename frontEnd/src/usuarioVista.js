@@ -183,7 +183,7 @@ function UsuarioVista(){
                 </DialogContent>
             </Dialog>
 
-            <Button onClick={(e) => navigate("/login")}>LogOut</Button>
+            <Button onClick={(e) => navigate("/bienvenida")}>LogOut</Button>
 
         </Toolbar>
       </AppBar>

@@ -65,7 +65,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 //Recibirá por aquí un props de la nota a añadir 
 function AdministradorVista(){
-  
   const [users, setUsers] = React.useState([]);
   const [editCopia, setEditCopia] = React.useState([]); //Este hook es para actualizar el grid
   const [open, setOpen] = React.useState(false);
@@ -195,6 +194,8 @@ function AdministradorVista(){
     });
   }
 
+  
+
   //Funcion para actualizar el grid de las cards
   function updateUser(card){    //Esto solo lo podría hacer el usuario
     //Implementar mejor esta forma 
@@ -231,7 +232,7 @@ function AdministradorVista(){
     }).then(function(response){
       console.log("Se modificaron correctamente los cambios");
     });
-
+    
     return(
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "lightskyblue" }}>

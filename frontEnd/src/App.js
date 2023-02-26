@@ -9,17 +9,19 @@ import Login from "./login.js";
 import UserNav from "./userSignUp";
 import Admin from "./administradorVista";
 import UserVista from "./usuarioVista";
+import Bienvenida from "./bienvenida.js";
 
 export default function App() {
   return (
     <Router>
         <div>
             <Routes>
-                <Route path="/" element = {<Navigate to="Login"/>}/>
-                <Route path="/login" element = {<Login/>}/>
-                <Route path="/Login/userSignUp/:contrasena" element = {<UserNav/>}/>
-                <Route path="/Login/administradorVista" element = {<Admin/>}/>
-                <Route path="/Login/userSignUp/:contrasena/usuarioVista/:dni" element = {<UserVista/>}/>
+                <Route path="/" element = {<Navigate to="Bienvenida"/>}/>
+                <Route path="/bienvenida" element = {<Bienvenida/>}/>
+                <Route path="/Bienvenida/login" element = {<Login/>}/>
+                <Route path="/Bienvenida/userSignUp" element = {<UserNav/>}/>
+                <Route path="/Bienvenida/login/administradorVista" element = {<Admin/>}/>
+                <Route path="/Bienvenida/login/usuarioVista" element = {<UserVista/>}/>
             </Routes>
         </div>
     </Router>

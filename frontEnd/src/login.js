@@ -69,7 +69,7 @@ export default function SignInSide() {
     if( data.get('usuario') === "admin" && data.get('contra') === "admin"){
       let user = navigate("./administradorVista");
     }else{
-      let user = navigate("./userSignUp/" + data.get('contra'));
+      let user = navigate("./usuarioVista");
     }
     
   };
