@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { DialogContent, DialogContentText, DialogTitle, Dialog } from '@mui/material';
 import Footer from "./Footer"
+import GoogleButton from 'react-google-button'
 
 const Img = styled("img")({
   margin: "auto",
@@ -69,7 +70,7 @@ export default function SignInSide() {
     if( data.get('usuario') === "admin" && data.get('contra') === "admin"){
       let user = navigate("./administradorVista");
     }else{
-      let user = navigate("./usuarioVista");
+      let user = navigate("./userSignUp/" + data.get('contra'));
     }
     
   };
@@ -145,9 +146,7 @@ export default function SignInSide() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" onClick={handleClickOpen}>
-                    Contacta con nosotros
-                  </Link>
+                  
                   <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>
                       Contacta con nosotros
@@ -158,6 +157,10 @@ export default function SignInSide() {
                   </Dialog>
                 </Grid>
               </Grid>
+              <GoogleButton/>
+              <Link href="#" variant="body2" onClick={handleClickOpen}>
+                    Contacta con nosotros
+              </Link>
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
