@@ -159,7 +159,7 @@ export default function SignInSide() {
               </Grid>
               <GoogleButton/>
               <Link href="#" variant="body2" onClick={handleClickOpen}>
-                    Contacta con nosotros
+                    Contacta con nosotros.
               </Link>
               <Copyright sx={{ mt: 5 }} />
             </Box>
