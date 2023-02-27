@@ -8,7 +8,9 @@ import Button from '@mui/material/Button';
 import { DialogContent, DialogContentText, DialogTitle, Dialog, DialogActions } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import Footer from './Footer'
+import { cambiarTituloSiUsuarioSeVa } from './cambiarTitulo';
 
+cambiarTituloSiUsuarioSeVa()
 const Img = styled("img")({
   margin: "auto",
   display: "block",

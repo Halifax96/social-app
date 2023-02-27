@@ -67,10 +67,13 @@ export default function SignInSide() {
       SignInSide();
     }
 
+    //Modificar este trozo de codigo. Así no hacemos ninguna llamada al backend
+    //Hay que hacer la solicitud al backend
+
     if( data.get('usuario') === "admin" && data.get('contra') === "admin"){
       let user = navigate("./administradorVista");
     }else{
-      let user = navigate("./userSignUp/" + data.get('contra'));
+      let user = navigate("./usuarioVista");
     }
     
   };
