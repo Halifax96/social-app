@@ -18,7 +18,7 @@ router.get("/", async function(req, res){
 router.post("/", async function(req, res) {  
     let nombre = req.body.nombre;
     let apellido = req.body.apellido;
-    let direccion = req.body.direccion;
+    let email = req.body.email;
     let dni = req.body.dni;
     let lugarNacimiento = req.body.lugarNacimiento;
     let descripcionPersonal = req.body.descripcionPersonal;
@@ -34,7 +34,7 @@ router.post("/", async function(req, res) {
 
         usuario.nombre = nombre;
         usuario.apellido = apellido;
-        usuario.direccion = direccion;
+        usuario.direccion = email;
         usuario.dni = dni;
         usuario.lugarNacimiento = lugarNacimiento;
         usuario.descripcionPersonal = descripcionPersonal;
@@ -63,7 +63,7 @@ router.put("/", async function(req, res){
     let idUser = req.body.id;
     let nombre = req.body.nombre;
     let apellido = req.body.apellido;
-    let direccion = req.body.direccion;
+    let email = req.body.email;
     let dni = req.body.dni;
     let lugarNacimiento = req.body.lugarNacimiento;
     let descripcionPersonal = req.body.descripcionPersonal;
@@ -81,7 +81,7 @@ router.put("/", async function(req, res){
             return res.status(400).send("Usuario no encontrado ");
         }
 
-        let nuevaCard = await User.findOneAndUpdate({id:idUser}, {nombre:nombre, apellido:apellido, direccion:direccion, dni:dni, lugarNacimiento:lugarNacimiento, descripcionPersonal:descripcionPersonal, telefono:telefono, fechaCreacion:fechaCreacion, comentario:comentario, favoritos:favoritos, avatar:avatar});
+        let nuevaCard = await User.findOneAndUpdate({id:idUser}, {nombre:nombre, apellido:apellido, email:email, dni:dni, lugarNacimiento:lugarNacimiento, descripcionPersonal:descripcionPersonal, telefono:telefono, fechaCreacion:fechaCreacion, comentario:comentario, favoritos:favoritos, avatar:avatar});
 
         //Creamos el token y enviamos a qn fue ananido a la base de datos
         //const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });

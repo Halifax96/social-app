@@ -20,4 +20,24 @@ router.get("/:dni", async function(req, res){
     }
 });
 
+//Metodo el cual verifica si el usuario esta dentro de la base de datos con su 
+//respectivo email y contrasena
+router.post("/", async function(req, res){
+    let email = req.body.email;
+    let contrasena = req.body.contrasena;
+
+    try{
+        const userDni = await User.find({dni:dni});
+        console.log(userDni);
+        if(userDni===[]){
+            return res.status(200).send("DNI no encontrado en la base de datos");
+        }
+
+        return res.status(200).send("DNI encontrado en la base de datos");
+    }catch(e){
+        res.status(400).send("Error en el servidor en peticion post del id");
+    }
+
+})
+
 module.exports = router;

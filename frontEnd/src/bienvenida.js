@@ -18,11 +18,10 @@ const Img = styled("img")({
   maxHeight: "9%",
 });
 
-const Imagenfondo = styled("imag")({
-  margin: "auto",
-  display: "block",
-  maxWidth: "9%",
-  maxHeight: "9%",
+const Imagenfondo = styled("img")({
+  maxWidth: "20%",
+  maxHeight: "20%",
+  right:0,
 });
 
 const theme = createTheme({
@@ -100,7 +99,7 @@ function Bienvenida() {
     <h4><dd> Añandir aqui breve explicaion de todo</dd></h4>
        
     <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-            <Img
+            <Imagenfondo
             src='https://img2.freepng.es/20180522/wpr/kisspng-earth-symbol-world-globe-globe-travel-5b03fd54d77e71.9387050515269881168827.jpg'
             />
     </Box>

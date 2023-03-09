@@ -16,7 +16,7 @@ let Users = new Schema({
         required: true,
     },
 
-    direccion: {
+    email: {
         type: String,
         required: true,
     },
