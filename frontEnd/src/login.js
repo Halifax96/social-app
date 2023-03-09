@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { DialogContent, DialogContentText, DialogTitle, Dialog } from '@mui/material';
+import axios from "axios";
 import Footer from "./Footer"
 import GoogleButton from 'react-google-button'
 
@@ -59,18 +60,39 @@ export default function SignInSide() {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('usuario'),
-      password: data.get('contra'),
+      contrasena: data.get('contrasena'),
     });
+    let email = data.get('usuario');
+    let contrasena = data.get('contrasena');
 
-    if( data.get('usuario') === "" || data.get('contra') === ""){
+    if( data.get('usuario') === "" || data.get('contrasena') === ""){
       window.confirm("No puede estar el campo usuario o contraseña vacios");
       SignInSide();
     }
 
     //Modificar este trozo de codigo. Así no hacemos ninguna llamada al backend
-    //Hay que hacer la solicitud al backend
+    //Hay que hacer la solicitud al backend       
+    
+    function validarUsuario(email, contrasena){
+      axios.post("http://localhost:5000/busqueda/", {email:email, contrasena:contrasena})
+      .then(function(response){
+          if(response.status===200){
+            let email = response.data.email;
+            let contrasena = response.data.contrasena;
+            //Aqui comprobamos si el usuario es valido
+            if((email===email)&&(contrasena===contrasena)){ //Aqui tenemos que comprobar el rol del propio usuario
+              //Lo haremos con un switch
+              //Hacer la implementacion de los roles
+            }
 
-    if( data.get('usuario') === "admin" && data.get('contra') === "admin"){
+          }else{
+            window.confirm("Error al iniciar sesión");
+          }
+      });
+    }
+
+
+    if( data.get('usuario') === "admin" && data.get('contrasena') === "admin"){
       let user = navigate("./administradorVista");
     }else{
       let user = navigate("./usuarioVista");
@@ -131,10 +153,10 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 fullWidth
-                name="contra"
+                name="contrasena"
                 label="contraseña"
                 type="password"
-                id="contra"
+                id="contrasena"
                 autoComplete="current-password"
                 variant="standard"
               />

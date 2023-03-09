@@ -36,11 +36,12 @@ export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const {contrasena} = useParams();
+  //const {contrasena} = useParams();
   const [nombre, setNombre] = React.useState();
   const [apellido, setApellido] = React.useState();
   const [lugarNacimiento, setLuegarNacimiento] = React.useState();
   const [email, setEmail] = React.useState();
+  const [contrasena, setContrasena] = React.useState();
   const [telefono, setTelefono] = React.useState();
   const [dni, setDni] = React.useState();
   const [trabajo, setTrabajo] = React.useState();
@@ -90,7 +91,7 @@ export default function MenuAppBar() {
       console.error(e);
     });*/
     //Aqui insertamos al usuario
-    axios.post("http://localhost:5000/api/user", {nombre: nombre, apellido: apellido, direccion: email, dni: dni, lugarNacimiento: lugarNacimiento, trabajo: trabajo, descripcionPersonal: descripcionPersonal, telefono: telefono, fechaCreacion: Date.now(), contrasena:contrasena})
+    axios.post("http://localhost:5000/api/user", {nombre: nombre, apellido: apellido, email: email, dni: dni, lugarNacimiento: lugarNacimiento, trabajo: trabajo, descripcionPersonal: descripcionPersonal, telefono: telefono, fechaCreacion: Date.now(), contrasena:contrasena})
     .then(function(response){
       if(response.status===200){
         console.log("Todo ha salido bien usuario insertado de forma correcta en la base de datos");
@@ -209,6 +210,16 @@ export default function MenuAppBar() {
             id="outlined-required"
             label="Email"
             onChange={(e) => {setEmail(e.target.value)}}
+          />
+        </Box>
+
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <TextField
+            variant="standard"
+            sx={{ m: 1, width: "25ch" }}
+            id="outlined-required"
+            label="Contraseña"
+            onChange={(e) => {setContrasena(e.target.value)}}
           />
         </Box>
 
