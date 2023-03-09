@@ -52,6 +52,11 @@ let Users = new Schema({
         required: true,
     },
 
+    rol: {
+        type: String,
+        required: true,
+    },
+
     //Agregamos las demas coleciones
     favoritos:[favoritos],
     avatares:[avatares],

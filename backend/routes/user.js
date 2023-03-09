@@ -25,6 +25,7 @@ router.post("/", async function(req, res) {
     let telefono = req.body.telefono;
     let contrasena = req.body.contrasena;
     let fechaCreacion = req.body.fechaCreacion;
+    let rol = req.body.rol;
     let comentario = req.body.comentario;
     let favoritos = req.body.favoritos;
     let avatar = req.body.avatar;
@@ -41,6 +42,7 @@ router.post("/", async function(req, res) {
         usuario.telefono = telefono;
         usuario.contrasena = contrasena;
         usuario.fechaCreacion = fechaCreacion;
+        usuario.rol = rol;
         usuario.comentario = comentario;
         usuario.avatar = avatar;
         usuario.favoritos = favoritos;
@@ -69,6 +71,7 @@ router.put("/", async function(req, res){
     let descripcionPersonal = req.body.descripcionPersonal;
     let telefono = req.body.telefono;
     let fechaCreacion = req.body.fechaCreacion;
+    let rol = req.body.rol;
     let comentario = req.body.comentario;
     let favoritos = req.body.favoritos;
     let avatar = req.body.avatar;      
@@ -81,7 +84,7 @@ router.put("/", async function(req, res){
             return res.status(400).send("Usuario no encontrado ");
         }
 
-        let nuevaCard = await User.findOneAndUpdate({id:idUser}, {nombre:nombre, apellido:apellido, email:email, dni:dni, lugarNacimiento:lugarNacimiento, descripcionPersonal:descripcionPersonal, telefono:telefono, fechaCreacion:fechaCreacion, comentario:comentario, favoritos:favoritos, avatar:avatar});
+        let nuevaCard = await User.findOneAndUpdate({id:idUser}, {nombre:nombre, apellido:apellido, email:email, dni:dni, lugarNacimiento:lugarNacimiento, descripcionPersonal:descripcionPersonal, telefono:telefono, fechaCreacion:fechaCreacion, rol:rol, comentario:comentario, favoritos:favoritos, avatar:avatar});
 
         //Creamos el token y enviamos a qn fue ananido a la base de datos
         //const token = jwt.sign({dni:dni}, "ClaveCifrado", { expiresIn: "3m" });
