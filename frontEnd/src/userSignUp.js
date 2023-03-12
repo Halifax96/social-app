@@ -43,6 +43,7 @@ export default function MenuAppBar() {
   const [email, setEmail] = React.useState();
   const [contrasena, setContrasena] = React.useState();
   const [telefono, setTelefono] = React.useState();
+  const [rol, setRol] = React.useState();
   const [dni, setDni] = React.useState();
   const [trabajo, setTrabajo] = React.useState();
   const [descripcionPersonal, setDescripcionPersonal] = React.useState();
@@ -60,6 +61,15 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  //Variables y funciones para escoger el rol
+  const [escogerRol, setEscogerRol] = React.useState(false);
+  const handleOpenEscogerRol = () => {
+    setEscogerRol(true);
+  }
+  const handleCloseEscogerRol = () => {
+    setEscogerRol(false);
+  }
 
   //Variabeles y funciones para añadir un botón
   const [open, setOpen] = React.useState(false);
@@ -91,7 +101,7 @@ export default function MenuAppBar() {
       console.error(e);
     });*/
     //Aqui insertamos al usuario
-    axios.post("http://localhost:5000/api/user", {nombre: nombre, apellido: apellido, email: email, dni: dni, lugarNacimiento: lugarNacimiento, trabajo: trabajo, descripcionPersonal: descripcionPersonal, telefono: telefono, fechaCreacion: Date.now(), contrasena:contrasena})
+    axios.post("http://localhost:5000/api/user", {nombre: nombre, apellido: apellido, email: email, dni: dni, rol:rol, lugarNacimiento: lugarNacimiento, trabajo: trabajo, descripcionPersonal: descripcionPersonal, telefono: telefono, fechaCreacion: Date.now(), contrasena:contrasena})
     .then(function(response){
       if(response.status===200){
         console.log("Todo ha salido bien usuario insertado de forma correcta en la base de datos");
@@ -263,6 +273,44 @@ export default function MenuAppBar() {
           />
         </Box>
 
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button color="primary" variant="outlined" onClick={(e) => handleOpenEscogerRol}>
+            Escoga un Rol
+          </Button>
+
+          <Dialog escogerRol={escogerRol} onClose={handleCloseEscogerRol}>
+          <DialogContent>
+                <DialogContentText>
+                    <TextField
+                      label="rolUsuraio"
+                      id="standard-start-adornment"
+                      sx={{ m: 1, width: "25ch" }}
+                      variant="standard"
+                      onChange={(e) => {setRol(e.target.value)}}
+                    />
+                </DialogContentText>
+                <DialogContentText>
+                    <TextField
+                        label="rolAdmin"
+                        id="standard-start-adornment"
+                        sx={{ m: 1, width: "25ch" }}
+                        variant="standard"
+                        onChange={(e) => {setRol(e.target.value)}}
+                      />
+                </DialogContentText>
+                <DialogContentText>
+                    <TextField
+                        label="rolManager"
+                        id="standard-start-adornment"
+                        sx={{ m: 1, width: "25ch" }}
+                        variant="standard"
+                        onChange={(e) => {setRol(e.target.value)}}
+                      />
+                </DialogContentText>
+          </DialogContent>
+          </Dialog>
+        </Box>
+        
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <TextField
             variant="outlined"

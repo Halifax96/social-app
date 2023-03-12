@@ -73,23 +73,30 @@ export default function SignInSide() {
     //Modificar este trozo de codigo. Así no hacemos ninguna llamada al backend
     //Hay que hacer la solicitud al backend       
     
-    function validarUsuario(email, contrasena){
-      axios.post("http://localhost:5000/busqueda/", {email:email, contrasena:contrasena})
+    //function validarUsuario(email, contrasena){
+      axios.get("http://localhost:5000/busqueda/", {email:email, contrasena:contrasena})
       .then(function(response){
           if(response.status===200){
             let email = response.data.email;
             let contrasena = response.data.contrasena;
             //Aqui comprobamos si el usuario es valido
             if((email===email)&&(contrasena===contrasena)){ //Aqui tenemos que comprobar el rol del propio usuario
-              //Lo haremos con un switch
-              //Hacer la implementacion de los roles
-            }
+              if(response.data.rol==="rolUsuraio"){
+                 navigate("./usuarioVista");
+              }else if(response.data.rol==="rolAdmin"){
+                 navigate("./administradorVista");
+              }else if(response.data.rol==="rolManager"){
+                  //Aqui pondremos la ventana del manager
+              }else{
+                 window.confirm("Error del rol de usuario");
+              }
 
+            }
           }else{
             window.confirm("Error al iniciar sesión");
           }
       });
-    }
+    //}
 
 
     if( data.get('usuario') === "admin" && data.get('contrasena') === "admin"){

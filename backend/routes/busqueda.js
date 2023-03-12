@@ -22,20 +22,20 @@ router.get("/:dni", async function(req, res){
 
 //Metodo el cual verifica si el usuario esta dentro de la base de datos con su 
 //respectivo email y contrasena
-router.post("/", async function(req, res){
+router.get("/", async function(req, res){
     let email = req.body.email;
     let contrasena = req.body.contrasena;
 
     try{
-        const userDni = await User.find({dni:dni});
+        const userDni = await User.findOne({emial:emal, contrasena:contrasena});
         console.log(userDni);
-        if(userDni===[]){
-            return res.status(200).send("DNI no encontrado en la base de datos");
+        if(userDni===[]){ //El codigo de HTTP para estos casos es el 202 
+            return res.status(202).send("Usuario no encontrado en la base de datos"); //https://es.wikipedia.org/wiki/Anexo:C%C3%B3digos_de_estado_HTTP#3xx:_Redirecciones
         }
-
-        return res.status(200).send("DNI encontrado en la base de datos");
+        //Una vez encontrado el usuario enviamos al propio usuario
+        return res.status(200).send(userDni);
     }catch(e){
-        res.status(400).send("Error en el servidor en peticion post del id");
+        res.status(400).send("Error en el servidor en peticion get del usuario");
     }
 
 })
